@@ -1,5 +1,29 @@
 package models
 
+// TODO try to define two different StoredScript types (script and search_template) such that json transformation can work
+
+type StoredScript struct {
+	Name   string  `json:"-"`
+	Script *Script `json:"script"`
+}
+
+type StoredSearchTemplate struct {
+	Name           string          `json:"-"`
+	SearchTemplate *SearchTemplate `json:"script"`
+}
+
+type Script struct {
+	Lang   string                 `json:"lang"`
+	Source string                 `json:"source"`
+	Params map[string]interface{} `json:"params,omitempty"`
+}
+
+type SearchTemplate struct {
+	Lang   string                 `json:"lang"`
+	Source map[string]interface{} `json:"source"`
+	Params map[string]interface{} `json:"params,omitempty"`
+}
+
 type User struct {
 	Username     string                 `json:"-"`
 	FullName     string                 `json:"full_name,omitempty"`
